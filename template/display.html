@@ -1,0 +1,37 @@
+<html>
+<head>
+    <title> Display Data </title>
+</head>
+<body>
+    <table border=1 cellpadding=1 cellspacing=1>
+        <tr>
+            <th> ID </th>
+            <th> Name </th>
+            <th> Email </th>
+        </tr>
+<?php
+    //Create Connection with MySQL Database
+    $con = mysqli_connect('localhost','root','');
+
+    //Select Database
+    if(!mysqli_select_db($con,'profiles'))
+    {
+        echo "Database Not Selected";
+    }
+    //Select Query
+    $sql = "SELECT * FROM users";
+
+    //Execute the SQL query
+    $records = mysqli_query($con,$sql);
+
+    while($row = mysqli_fetch_array($records))
+    {
+        echo "<tr>";
+        echo "<td>".$row['ID']."</td>";
+        echo "<td>".$row['Name']."</td>";
+        echo "<td>".$row['Email']."</td>";
+    }
+?>
+    </table>
+</body>
+</html>
